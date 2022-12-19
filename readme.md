@@ -12,6 +12,16 @@ Below is a sample using [vim-plug](https://github.com/junegunn/vim-plug):
     Plug 'arnie97/exakt.vim'
 
 
+# Configuration
+
+This plugin follows the option `&keywordprg`, but will not work if
+`&keywordprg` does not start with `:` (for external programs, you may
+explicitly `set keywordprg=:terminal\ foobar` as an alternative).
+
+It also wraps the `&iskeyword` option somewhat (`\k`), although solely
+`&iskeyword` is not enough to match `substitude(foo, bar)` exaKtly.
+
+
 ## License
 
 This software is released into the public domain.

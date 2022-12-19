@@ -2,12 +2,16 @@ if exists('b:did_ftplugin')
     finish
 endif
 
+let b:undo_ftplugin = 'set iskeyword<'
+
+setlocal iskeyword+=#,-
+
 nnoremap <script> <buffer> <expr> K
-    \ ':help '..<sid>ExaktHelpTagUnderCursor()..'<cr>'
+    \ (&keywordprg !~ '^:'? ':help': &keywordprg)
+    \ ..' '..<sid>ExaktHelpTagUnderCursor()..'<cr>'
 
 function <sid>ExaktHelpTagUnderCursor()
-    let pattern = '\v\c(%#\\.)|(\\%#.)|'..
-        \ '(\w?:|\<)?<[-#[:alnum:]_]*%#[-#[:alnum:]_]+>[>(]?'
+    let pattern = '\v\c(%#\\.)|(\\%#.)|\<?<\k*%#\k+>[>(]?'
 
     let start = searchpos(pattern, 'bcnW', line('.'))[1]
     if !start
