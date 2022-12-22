@@ -1,5 +1,5 @@
 function exakt#HelpTagUnderCursor() abort
-    let pattern = '\v\c(%#\\.)|(\\%#.)|\<?<\k*%#\k+>[>(]?'
+    let pattern = '\v\c(%#\\.)|(\\%#.)|\<?<(vim\.)?\k*%#\k+>[>(]?'
 
     let start = searchpos(pattern, 'bcnW', line('.'))[1]
     if !start
